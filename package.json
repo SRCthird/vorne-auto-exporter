@@ -4,7 +4,8 @@
   "description": "This application pulls and refactors the data from the XL database.",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
+    "initialize-db": "node initdb.js && cd mysql/bin && mysqld --initialize"
   },
   "author": "Stephen Chryn",
   "license": "ISC",
