@@ -1,6 +1,6 @@
-const axios = require('axios');
+import axios from 'axios';
 
-export async function query(server, sqlStatement, columnTransformations, debug = false, raw = true) {
+export async function useQuery(server, sqlStatement, columnTransformations, debug = false, raw = true) {
     // Set resultQuery to an empty array
     let resultQuery = [];
 
@@ -64,5 +64,7 @@ export async function query(server, sqlStatement, columnTransformations, debug =
 
     return resultQuery;
 }
+
+export default useQuery;
 
 
