@@ -9,7 +9,7 @@ setTimeout(() => {
   async function setPassword() {
     const connection = await mysql.createConnection(passwordConfig);
     try {
-      await connection.query('ALTER USER \'root\'@\'localhost\' IDENTIFIED BY \'aragorn\';');
+      await connection.query('ALTER USER \'root\'@\'localhost\' IDENTIFIED WITH \'mysql_native_password\' BY \'aragorn\';');
     } catch (err) {
       console.error(`Error creating password:`, err);
     } finally {

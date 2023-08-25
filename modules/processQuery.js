@@ -59,7 +59,7 @@ export const processQuery = async (Database, server, Table) => {
     // Create a connection to the MySQL database
     const connection = mysql.createConnection({
         host: 'localhost',
-        user: 'Administrator',
+        user: 'root',
         password: 'aragorn',
         database: Database['Name']
     });
