@@ -33,7 +33,9 @@ npm install
 ```bash
 npm run init
 ```
-4. Start the server:
+4. You will be prompted to enter a password, this will be saved and used in all automation accessing the MySQL server. Make it easy to remember but hard to guess.
+
+5. Start the server:
 ```bash
 npm run start-db
 ```
