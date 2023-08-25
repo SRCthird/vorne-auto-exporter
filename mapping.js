@@ -515,3 +515,5 @@ class Mapping {
         return mapping[parsedInput] || 'unknown';
     }
 };
+
+export default Mapping;
