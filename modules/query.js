@@ -21,4 +21,6 @@ export async function query() {
     }
 }
 
+query();
+
 export default query;

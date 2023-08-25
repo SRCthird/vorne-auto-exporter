@@ -20,10 +20,12 @@ export const processQuery = async (Database, server, Table) => {
     const Columns = Object.keys(Database['Tables']['Streams'][Table]['columns']);
 
     const columnTransformationsMap = {
+        'PKint': parseInt,
         'int': parseInt,
         'float': parseFloat,
         'str': String,
         'formatTime': formatTime,
+        // set all mapping types here:
         'mapping.state': mapping.state.bind(mapping),
         'mapping.reason1': mapping.reason1.bind(mapping),
         'mapping.reason2': mapping.reason2.bind(mapping),
