@@ -1,6 +1,7 @@
 {
   "name": "tvmc-database",
   "version": "1.0.0",
+  "type": "module",
   "description": "This application pulls and refactors the data from the XL database.",
   "main": "index.js",
   "scripts": {
@@ -12,6 +13,7 @@
   "dependencies": {
     "axios": "^1.4.0",
     "fs": "^0.0.1-security",
+    "js-yaml": "^4.1.0",
     "mysql": "^2.18.1",
     "path": "^0.12.7"
   }
