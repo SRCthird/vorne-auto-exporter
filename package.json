@@ -11,7 +11,8 @@
     "generate": "node src/generate.js",
     "init": "npm-run-all -s myini initialize-db -p start-db generate",
     "start-db": "cd mysql/bin && mysqld",
-    "start-loop": "node src/query.js"
+    "query-loop": "node src/recurrance.js",
+    "query-solo": "node modules/query.js"
   },
   "author": "Stephen Chryn",
   "license": "ISC",
