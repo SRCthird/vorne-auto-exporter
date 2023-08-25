@@ -2,11 +2,12 @@
   "name": "tvmc-database",
   "version": "1.0.0",
   "type": "module",
-  "description": "This application pulls and refactors the data from the XL database.",
+  "description": "This application pulls and refactors the data from the Vorne XL database.",
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
-    "initialize-db": "node initdb.js && cd mysql/bin && mysqld --initialize"
+    "initialize-db": "node initdb.js && cd mysql/bin && mysqld --initialize",
+    "start-loop": "node src/query.js"
   },
   "author": "Stephen Chryn",
   "license": "ISC",
