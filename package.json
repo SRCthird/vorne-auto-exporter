@@ -6,11 +6,13 @@
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
-    "myini": "node src/initdb.js",
-    "initialize-db": "cd mysql/bin && mysqld --initialize-insecure",
-    "generate": "node src/generate.js",
-    "init": "npm-run-all -s myini initialize-db -p start-db generate",
-    "start-db": "cd mysql/bin && mysqld",
+    "init-myini": "node src/init-myini.js",
+    "init-db": "cd mysql/bin && mysqld --initialize-insecure",
+    "init-password": "node src/init-password.js",
+    "init-database": "node src/init-database.js",
+    "init-table": "node src/init-table.js",
+    "init": "npm-run-all -s init-myini init-db -p start-db -s init-password init-database init-table",
+    "start-db": "cd mysql/bin && start /B mysqld",
     "query-loop": "node src/recurrance.js",
     "query-solo": "node modules/query.js"
   },
