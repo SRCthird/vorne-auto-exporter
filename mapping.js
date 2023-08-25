@@ -1,4 +1,4 @@
-class Mapping {
+export class Mapping {
     constructor() {
         this.map = new Map();
     }
