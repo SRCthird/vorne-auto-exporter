@@ -1,7 +1,7 @@
 import fs from 'fs';
 import yaml from 'js-yaml';
 
-import('./processQuery.js').then(({ processQuery }) => {
+import('./modules/processQuery.js').then(({ processQuery }) => {
 
     // Read the schema.yaml file
     const fileContent = fs.readFileSync('schema.yaml', 'utf8');
