@@ -6,10 +6,12 @@
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
-    "initialize-db": "node src/initdb.js && cd mysql/bin && mysqld --initialize",
-    "start-loop": "node src/query.js",
-    "start-db": "node src/initdb.js && cd mysql/bin && mysqld",
-    "generate": "node src/generate.js"
+    "myini": "node src/initdb.js",
+    "initialize-db": "cd mysql/bin && mysqld --initialize-insecure",
+    "generate": "node src/generate.js",
+    "init": "npm-run-all -s myini initialize-db -p start-db generate",
+    "start-db": "cd mysql/bin && mysqld",
+    "start-loop": "node src/query.js"
   },
   "author": "Stephen Chryn",
   "license": "ISC",
@@ -19,6 +21,7 @@
     "js-yaml": "^4.1.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.6.0",
+    "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
     "url": "^0.11.1"
   }
