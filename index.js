@@ -1,60 +1,89 @@
-const yargs = require('yargs');
+const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const { execSync } = require('child_process');
-const http = require('http');
+const net = require('net');
 const { runAndWait } = require('./modules/runAndWait.js');
 const { query } = require('./modules/query.js');
 
 function runCommand(cmd) {
     try {
-      const output = execSync(cmd, { stdio: 'inherit' });
+        const output = execSync(cmd, { stdio: 'inherit' });
     } catch (error) {
-      console.error('Failed to execute command:', cmd);
+        console.error('Failed to execute command:', cmd);
     }
-  }
-
-const argv = yargs(hideBin(process.argv)).argv;
-
-if (argv.start) {
-    runAndWait();
 }
 
-if (argv.stop) {
-    runCommand("taskkill /IM vorne-query.exe /F");
-}
+yargs(hideBin(process.argv))
+    .command({
+        command: 'mysql-start',
+        describe: 'Start the MySQL service',
+        handler: () => {
+            const client = new net.Socket();
 
-if (argv.refresh) {
-    query();
-}
+            client.connect(3306, 'localhost', () => {
+                console.log('Database is already started.');
+                client.end();
+            });
 
-if (argv.init) {
-    runCommand('npm i');
-    runCommand('node src/init-myini.js');
-    runCommand('cd mysql/bin && mysqld --initialize-insecure');
-    runCommand('cd mysql/bin && start /B mysqld');
-    runCommand('node src/init-password.js');
-    runCommand('node src/init-database.js');
-    runCommand('node src/init-table.js');
-}
-
-if (argv['start-db']) {
-    const request = http.request({
-        hostname: 'localhost',
-        port: 3306,
-        method: 'GET'
-    }, (response) => {
-        console.log('Received a response, which is unexpected. Database might already be started.');
-    }).on('error', (err) => {
-        if (err.code === 'ECONNREFUSED') {
-            console.log('Connection refused, attempting to start MySQL...');
-            runCommand('cd mysql/bin && start /B mysqld');
-        } else {
-            console.log('Some other error:', err);
+            client.on('error', (err) => {
+                if (err.code === 'ECONNREFUSED') {
+                    console.log('Starting MySQL service...');
+                    runCommand('cd mysql/bin && start /B mysqld');
+                } else {
+                    console.log('Error:', err);
+                    console.log('Attempting to start MySQL service...');
+                    runCommand('cd mysql/bin && start /B mysqld');
+                }
+            });
         }
-    });
-    request.end();
-}
-
-if (argv['stop-db']) {
-    runCommand('taskkill /IM mysqld.exe /F');
-}
+    })
+    .command({
+        command: 'mysql-stop', 
+        describe: 'Stop the MySQL service', 
+        handler: () => {
+            console.log('Stopping MySQL service...');
+            runCommand(`cd mysql/bin && mysqladmin -u root -p shutdown`);
+        }
+    })
+    .command({
+        command: 'start', 
+        describe: 'Start the query loop', 
+        handler: () => {
+            console.log('Starting service...');
+            runAndWait();
+        }
+    })
+    .command({
+        command: 'stop', 
+        describe: 'Stop the query loop', 
+        handler: () => {
+            console.log('Stopping service...');
+            runCommand("taskkill /IM vorne-query.exe /F");
+        }
+    })
+    .command({
+        command: 'refresh', 
+        describe: 'Refresh the data', 
+        handler: () => {
+            console.log('Refreshing service...');
+            query();
+        }
+    })
+    .command({
+        command: 'init', 
+        describe: 'Initialize the program', 
+        handler: () => {
+            console.log('Initializing service...');
+            runCommand('npm i');
+            runCommand('node src/init-myini.js');
+            runCommand('cd mysql/bin && mysqld --initialize-insecure');
+            runCommand('cd mysql/bin && start /B mysqld');
+            runCommand('node src/init-password.js');
+            runCommand('node src/init-database.js');
+            runCommand('node src/init-table.js');
+        }
+    })
+    .demandCommand(1, 'You need at least one command before moving on')
+    .strict()
+    .help()
+    .argv;
