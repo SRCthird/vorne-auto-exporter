@@ -20,4 +20,4 @@ async function query() {
     }
 }
 
-module.exports = query;
+module.exports = { query };

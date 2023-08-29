@@ -88,4 +88,4 @@ const processQuery = async (Database, server, Table) => {
     connection.end();
 }
 
-module.exports = processQuery;
+module.exports = { processQuery };

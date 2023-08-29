@@ -65,6 +65,6 @@ async function useQuery(server, sqlStatement, columnTransformations, debug = fal
     return resultQuery;
 }
 
-module.exports = useQuery;
+module.exports = { useQuery };
 
 
