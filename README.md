@@ -28,7 +28,7 @@ cd vorne-database
 
 3. Initialize the MySQL database:
 ```bash
-vorne-query --init
+vorne-query init
 ```
 4. You will be prompted to enter a password, this will be saved and used in all automation accessing the MySQL server. Make it easy to remember but hard to guess.
 
@@ -69,15 +69,21 @@ Creating custom mapping functions can be done in the [Mapping](./modules/mapping
 
 ## Usage
 
-* **Automated Data Collection** 
-    The program is set up to automatically fetch and process data from the Vorne XL database servers every 24 hours. To start this service, run:
+* command help:
+  This will display all available commands for vorne-query.
 ```bash
-vorne-query --start
+vorne-query help
+```
+
+* **Automated Data Collection** 
+  The program is set up to automatically fetch and process data from the Vorne XL database servers every 24 hours. To start this service, run:
+```bash
+vorne-query start
 ```
 * **Manual Data Refresh**
-    If you need to manually update the data and don't want to restart the loop, use:
+  If you need to manually update the data and don't want to restart the loop, use:
 ```bash
-vorne-query --refresh
+vorne-query refresh
 ```
 
 ## Configuration
@@ -86,7 +92,7 @@ Before starting, ensure you update the [schema.yaml](/README.md#L37) and [initia
 
 **You will beed the following:**
 * Vorne XL database credentials and endpoint
-* A MySQL database credentials and settings
+* MySQL database credentials and settings
 
 ## License 
 
