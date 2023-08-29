@@ -28,6 +28,7 @@ if (argv.refresh) {
 }
 
 if (argv.init) {
+    runCommand('npm i');
     runCommand('node src/init-myini.js');
     runCommand('cd mysql/bin && mysqld --initialize-insecure');
     runCommand('cd mysql/bin && start /B mysqld');
