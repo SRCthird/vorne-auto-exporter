@@ -13,7 +13,7 @@ This program is designed to fetch data from a Vorne XL database, process the inf
 
 1. Clone the repository to a local machine:
 ```bash
-git clone -b executable https://github.com/SRCthird/vorne-database.git
+git clone https://github.com/SRCthird/vorne-database.git
 ```
 2. Navigate to the project directory:
 ```bash
