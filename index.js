@@ -54,14 +54,6 @@ yargs(hideBin(process.argv))
         }
     })
     .command({
-        command: 'stop', 
-        describe: 'Stop the query loop', 
-        handler: () => {
-            console.log('Stopping query loop...');
-            runCommand("taskkill /IM vorne-query.exe /F");
-        }
-    })
-    .command({
         command: 'refresh', 
         describe: 'Refresh the data', 
         handler: () => {
