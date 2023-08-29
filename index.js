@@ -2,7 +2,8 @@ const yargs = require('yargs');
 const { hideBin } = require('yargs/helpers');
 const { execSync } = require('child_process');
 const http = require('http');
-cost recurrance = require('./recurrance.js');
+const { runAndWait } = require('./modules/runAndWait.js');
+const { query } = require('./modules/query.js');
 
 function runCommand(cmd) {
     try {
@@ -12,20 +13,18 @@ function runCommand(cmd) {
     }
   }
 
-request.end();
-
 const argv = yargs(hideBin(process.argv)).argv;
 
 if (argv.start) {
-    runCommand("node src/recurrance.js");
+    runAndWait();
 }
 
 if (argv.stop) {
-    runCommand("taskkill /IM vorne.exe /F");
+    runCommand("taskkill /IM vorne-query.exe /F");
 }
 
 if (argv.refresh) {
-    runCommand("node modules/query.js");
+    query();
 }
 
 if (argv.init) {
