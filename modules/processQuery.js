@@ -26,6 +26,7 @@ export const processQuery = async (Database, server, Table) => {
         'str': String,
         'formatTime': formatTime,
         // set all mapping types here:
+        // 'mapping.<name>': mapping.<name>.bind(mapping),
         'mapping.state': mapping.state.bind(mapping),
         'mapping.reason1': mapping.reason1.bind(mapping),
         'mapping.reason2': mapping.reason2.bind(mapping),
