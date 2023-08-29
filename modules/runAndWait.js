@@ -12,7 +12,7 @@ function showSpinner() {
 // Function to run the main program, wait 24 hours, and then run it again
 function runAndWait() {
     query();
-
+    console.log('Hit ctl+c to end the loop.')
     // Start the spinner
     let spinnerInterval = setInterval(showSpinner, 200);
 
