@@ -1,10 +1,11 @@
-# Vorne XL Data Collector
+# Vorne XL Data Collector (Executable)
 
 This program is designed to fetch data from a Vorne XL database, process the information, and then store it in a MySQL database. It provides both automated and manual methods to retrieve and update the data.
 
 ## Prerequisites
 
-* Node.js and NPM
+* Node.js and NPM (optional)
+* git (optional)
 * [MySQL server v 8.0.28](https://downloads.mysql.com/archives/community/)
 * A server/computer with sleep disabled
 
@@ -12,55 +13,47 @@ This program is designed to fetch data from a Vorne XL database, process the inf
 
 1. Clone the repository to a local machine:
 ```bash
-git clone https://github.com/SRCthird/tvmc-database.git
+git clone -b executable https://github.com/SRCthird/vorne-database.git
 ```
-2. Navigate to the project directory
+2. Navigate to the project directory:
 ```bash
-cd tvmc-database
-```
-3. Install the required dependencies
-```bash
-npm install
+cd vorne-database
 ```
 
 ## Database Setup
 
 1. Install the required version of [MySQL](https://downloads.mysql.com/archives/community/).
 
-2. Extract the .zip file to the project directory, and renaim the folder mysql.
+2. Extract the .zip file to the project directory, and rename the folder mysql.
 
 3. Initialize the MySQL database:
 ```bash
-npm run init
+vorne-query --init
 ```
 4. You will be prompted to enter a password, this will be saved and used in all automation accessing the MySQL server. Make it easy to remember but hard to guess.
 
-5. Start the server:
-```bash
-npm run start-db
-```
-6. Create schema.yaml file:
-The program will pull the data with a yaml architecture of the following format:
-```yaml
-Database:
-    <ipaddress>
-        Name: <name of database> # Will be the name of the database in MySQL
-        Tables: 
-            Registers: # These tables are just for reference and wont be pulled
-                <table1>
-                    columns:
-                        <column1>: <datatype>
-                        <column2>: <datatype>
-            Streams: # The tables that will be pulled and stored in MySQL
-                <table2>
-                    columns:
-                        <column1>: <datatype>
-                        <column2>: <datatype>
-                <table3>
-                    columns:
-                        <column1>: <datatype>
-                        <column2>: <datatype>
-```
+5. Create schema.yaml file:<br>
+    The program will pull the data with a yaml architecture of the following format:
+    ```yaml
+    Database:
+        <ipaddress>
+            Name: <name of database> # Will be the name of the database in MySQL
+            Tables: 
+                Registers: # These tables are just for reference and wont be pulled
+                    <table1>
+                        columns:
+                            <column1>: <datatype>
+                            <column2>: <datatype>
+                Streams: # The tables that will be pulled and stored in MySQL
+                    <table2>
+                        columns:
+                            <column1>: <datatype>
+                            <column2>: <datatype>
+                    <table3>
+                        columns:
+                            <column1>: <datatype>
+                            <column2>: <datatype>
+    ```
 
 ## Data Types
 These are the data types that are set up to be used in the Schema.yaml file:
@@ -69,7 +62,7 @@ These are the data types that are set up to be used in the Schema.yaml file:
 3. `int`: Integer
 4. `float`: Floats will be converted to DECIMAL(10, 2)
 5. `formatTime`: DateTime. this will call the formatTime function and transform the string to DateTime.
-6. `mapping.<function>` These will be custom mapping functions. See [Mapping](./modules/mapping.js) for mapping functions.
+6. `mapping.<function>`: These will be custom mapping functions. See [Mapping](./modules/mapping.js) for mapping functions.
 
 **Mapping**
 Creating custom mapping functions can be done in the [Mapping](./modules/mapping.js) class. After creating a custom map, add it to [processQuery](./modules/processQuery.js#L22)
@@ -79,23 +72,22 @@ Creating custom mapping functions can be done in the [Mapping](./modules/mapping
 * **Automated Data Collection** 
     The program is set up to automatically fetch and process data from the Vorne XL database servers every 24 hours. To start this service, run:
 ```bash
-npm run query-loop
+vorne-query --start
 ```
 * **Manual Data Refresh**
     If you need to manually update the data and don't want to restart the loop, use:
 ```bash
-npm run query-solo
+vorne-query --refresh
 ```
 
 ## Configuration
 
-Before starting, ensure you update the schema.yaml with:
+Before starting, ensure you update the [schema.yaml](/README.md#L37) and [initialize](/README.md#L29) the program.
 
+**You will beed the following:**
 * Vorne XL database credentials and endpoint
-* MySQL database credentials and settings
+* A MySQL database credentials and settings
 
 ## License 
 
-Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+[ISC](/LICENSE)
