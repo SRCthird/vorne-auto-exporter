@@ -1,8 +1,8 @@
-import { useQuery } from './useQuery.js';
-import { Mapping } from './mapping.js';
-import mysql from 'mysql';
+const useQuery = require('./useQuery.js');
+const { Mapping } = require('./mapping.js');
+const mysql = require('mysql');
 
-export const processQuery = async (Database, server, Table) => {
+const processQuery = async (Database, server, Table) => {
 
     function formatTime(timestamp) {
         const baseDate = new Date(1900, 0, 1);
@@ -88,4 +88,4 @@ export const processQuery = async (Database, server, Table) => {
     connection.end();
 }
 
-export default processQuery;
+module.exports = processQuery;

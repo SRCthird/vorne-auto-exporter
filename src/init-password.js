@@ -1,6 +1,6 @@
-import mysql from'mysql2/promise';
-import readlineSync from 'readline-sync';
-import fs from 'fs';
+const mysql = require('mysql2/promise');
+const readlineSync = require('readline-sync');
+const fs = require('fs');
 
 const passwordConfig = {
     host: 'localhost',

@@ -1,9 +1,8 @@
-import fs from 'fs';
-import yaml from 'js-yaml';
+const fs = require('fs');
+const yaml = require('js-yaml');
+const processQuery = require('./processQuery.js');
 
-export async function query() {
-    const { processQuery } = await import('./processQuery.js');
-
+async function query() {
     // Read the schema.yaml file
     const fileContent = fs.readFileSync('schema.yaml', 'utf8');
 
@@ -23,4 +22,4 @@ export async function query() {
 
 query();
 
-export default query;
+module.exports = query;

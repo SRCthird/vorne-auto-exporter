@@ -1,6 +1,6 @@
-import mysql from 'mysql2/promise';
-import { readFileSync } from 'fs';
-import { load } from 'js-yaml';
+const mysql = require('mysql2/promise');
+const { readFileSync } = require('fs');
+const { load } = require('js-yaml');
 
 const schemaFile = 'schema.yaml';
 

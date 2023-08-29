@@ -1,4 +1,4 @@
-export class Mapping {
+class Mapping {
     constructor() {
         this.map = new Map();
     }
@@ -516,4 +516,4 @@ export class Mapping {
     }
 };
 
-export default Mapping;
+module.exports = { Mapping };

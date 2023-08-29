@@ -1,9 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+const fs = require('fs');
+const path = require('path');
 
 // Define the path to the my.ini file in the project directory
-const currentModulePath = path.dirname(fileURLToPath(import.meta.url));
+const currentModulePath = __dirname;
 const root = path.join(currentModulePath, '..');
 
 const basedir = path.join(root, 'mysql');

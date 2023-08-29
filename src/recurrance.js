@@ -1,4 +1,4 @@
-import query from '../modules/query.js';
+const query = require('../modules/query.js');
 
 // Loading spinner logic
 let chars = ['|', '/', '-', '\\'];

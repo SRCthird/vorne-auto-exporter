@@ -1,6 +1,6 @@
-import yargs from 'yargs/yargs';
-import { hideBin } from 'yargs/helpers';
-import { execSync } from 'child_process';
+const yargs = require('yargs');
+const { hideBin } = require('yargs/helpers');
+const { execSync } = require('child_process');
 
 function runCommand(cmd) {
     try {
@@ -25,7 +25,12 @@ if (argv.refresh) {
 }
 
 if (argv.init) {
-    runCommand("npm-run-all -s init-myini init-db -p start-db -s init-password init-database init-table");
+    runCommand('node src/init-myini.js');
+    runCommand('cd mysql/bin && mysqld --initialize-insecure');
+    runCommand('cd mysql/bin && start /B mysqld');
+    runCommand('node src/init-password.js');
+    runCommand('node src/init-database.js');
+    runCommand('node src/init-table.js');
 }
 
 if (argv['start-db']) {
