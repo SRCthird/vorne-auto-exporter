@@ -1,18 +1,14 @@
 const mysql = require('mysql2/promise');
 const { readFileSync } = require('fs');
 const { load } = require('js-yaml');
+const { getPassword } = require('../modules/getPassword.js')
 
 const schemaFile = 'schema.yaml';
-
-function getPasswordFromFile() {
-    const data = JSON.parse(readFileSync('password.json', 'utf8'));
-    return data.password;
-}
 
 const connectionConfig = {
     host: 'localhost',
     user: 'root',
-    password: getPasswordFromFile()
+    password: getPassword()
 };
 
 function getColumnDefinition(columnType) {
