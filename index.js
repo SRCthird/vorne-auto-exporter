@@ -1,6 +1,8 @@
 const yargs = require('yargs');
 const { hideBin } = require('yargs/helpers');
 const { execSync } = require('child_process');
+const http = require('http');
+cost recurrance = require('./recurrance.js');
 
 function runCommand(cmd) {
     try {
@@ -10,14 +12,16 @@ function runCommand(cmd) {
     }
   }
 
+request.end();
+
 const argv = yargs(hideBin(process.argv)).argv;
 
 if (argv.start) {
-    runCommand("start /B node src/recurrance.js");
+    runCommand("node src/recurrance.js");
 }
 
 if (argv.stop) {
-    runCommand("taskkill /IM tvmc.exe /F");
+    runCommand("taskkill /IM vorne.exe /F");
 }
 
 if (argv.refresh) {
@@ -34,7 +38,21 @@ if (argv.init) {
 }
 
 if (argv['start-db']) {
-    runCommand('cd mysql/bin && start /B mysqld');
+    const request = http.request({
+        hostname: 'localhost',
+        port: 3306,
+        method: 'GET'
+    }, (response) => {
+        console.log('Received a response, which is unexpected. Database might already be started.');
+    }).on('error', (err) => {
+        if (err.code === 'ECONNREFUSED') {
+            console.log('Connection refused, attempting to start MySQL...');
+            runCommand('cd mysql/bin && start /B mysqld');
+        } else {
+            console.log('Some other error:', err);
+        }
+    });
+    request.end();
 }
 
 if (argv['stop-db']) {
