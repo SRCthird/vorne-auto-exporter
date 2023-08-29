@@ -49,7 +49,7 @@ yargs(hideBin(process.argv))
         command: 'start', 
         describe: 'Start the query loop', 
         handler: () => {
-            console.log('Starting service...');
+            console.log('Starting query loop...');
             runAndWait();
         }
     })
@@ -57,7 +57,7 @@ yargs(hideBin(process.argv))
         command: 'stop', 
         describe: 'Stop the query loop', 
         handler: () => {
-            console.log('Stopping service...');
+            console.log('Stopping query loop...');
             runCommand("taskkill /IM vorne-query.exe /F");
         }
     })
@@ -65,7 +65,7 @@ yargs(hideBin(process.argv))
         command: 'refresh', 
         describe: 'Refresh the data', 
         handler: () => {
-            console.log('Refreshing service...');
+            console.log('Refreshing data...');
             query();
         }
     })
@@ -73,7 +73,7 @@ yargs(hideBin(process.argv))
         command: 'init', 
         describe: 'Initialize the program', 
         handler: () => {
-            console.log('Initializing service...');
+            console.log('Initializing program...');
             runCommand('npm i');
             runCommand('node src/init-myini.js');
             runCommand('cd mysql/bin && mysqld --initialize-insecure');
