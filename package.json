@@ -1,22 +1,18 @@
 {
   "name": "vorne-database",
-  "version": "1.0.0",
+  "author": "Stephen Chryn",
+  "license": "ISC",
   "description": "This application pulls and refactors the data from the Vorne XL database.",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
-    "init-myini": "node src/init-myini.js",
-    "init-db": "cd mysql/bin && mysqld --initialize-insecure",
-    "init-password": "node src/init-password.js",
-    "init-database": "node src/init-database.js",
-    "init-table": "node src/init-table.js",
-    "init": "npm-run-all -s init-myini init-db -p start-db -s init-password init-database init-table",
-    "start-db": "cd mysql/bin && start /B mysqld",
-    "query-loop": "node src/recurrance.js",
-    "query-solo": "node modules/query.js"
+    "init": "vorne-query init",
+    "start-db": "vorne-query mysql-start",
+    "stop-db": "vorne-query mysql-stop",
+    "query-loop": "vorne-query start",
+    "query-solo": "vorne-query refresh"
   },
-  "author": "Stephen Chryn",
-  "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
     "fs": "^0.0.1-security",
