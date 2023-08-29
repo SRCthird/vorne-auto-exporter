@@ -1,4 +1,4 @@
-const useQuery = require('./useQuery.js');
+const { useQuery } = require('./useQuery.js');
 const { Mapping } = require('./mapping.js');
 const mysql = require('mysql');
 
