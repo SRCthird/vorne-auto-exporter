@@ -60,8 +60,8 @@ class Mapping {
     serial_mode(input) {
         const parsedInput = parseInt(input, 10);
         const mapping = {
-            'RS 232': 0,
-            'RS 485': 1
+            0: 'RS 232',
+            1: 'RS 485'
         }
         return mapping[parsedInput] || 'unknown';
     }    
