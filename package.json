@@ -1,5 +1,5 @@
 {
-  "name": "tvmc-database",
+  "name": "vorne-database",
   "version": "1.0.0",
   "description": "This application pulls and refactors the data from the Vorne XL database.",
   "main": "index.js",
