@@ -75,10 +75,7 @@ yargs(hideBin(process.argv))
             runCommand('node src/init-table.js');
         }
     })
-    .version({
-        version: '1.0.0',
-        describe: 'Display the current version'
-    })
+    .version('1.0.0')
     .demandCommand(1, 'You need at least one command before moving on')
     .strict()
     .help()
