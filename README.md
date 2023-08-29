@@ -46,7 +46,7 @@ Database:
     <ipaddress>
         Name: <name of database> # Will be the name of the database in MySQL
         Tables: 
-            Registers: # These tables are just for reference and wont pulled
+            Registers: # These tables are just for reference and wont be pulled
                 <table1>
                     columns:
                         <column1>: <datatype>
