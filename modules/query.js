@@ -1,6 +1,6 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
-const processQuery = require('./processQuery.js');
+const { processQuery } = require('./processQuery.js');
 
 async function query() {
     // Read the schema.yaml file
