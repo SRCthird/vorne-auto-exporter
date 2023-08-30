@@ -1,6 +1,7 @@
 const { useQuery } = require('./useQuery.js');
 const { Mapping } = require('./mapping.js');
 const mysql = require('mysql');
+const { getPassword } = require('./getPassword.js');
 
 const processQuery = async (Database, server, Table) => {
 
@@ -63,7 +64,7 @@ const processQuery = async (Database, server, Table) => {
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: 'aragorn',
+        password: getPassword(),
         database: Database['Name']
     });
 
