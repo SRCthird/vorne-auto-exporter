@@ -14,6 +14,7 @@ function runCommand(cmd) {
 }
 
 yargs(hideBin(process.argv))
+    .scriptName("vorne-query")
     .command({
         command: 'mysql-start',
         describe: 'Start the MySQL service',
