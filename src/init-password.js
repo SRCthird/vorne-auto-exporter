@@ -22,15 +22,12 @@ async function setPassword(password) {
 }
 
 async function main() {
-    // Ask the user for a password.
     const password = readlineSync.question('Please enter a new password for the MySQL root user (input will be hidden): ', {
         hideEchoBack: true
     });
 
-    // Save the password in a JSON file.
     fs.writeFileSync(passwordFile, JSON.stringify({password}));
 
-    // Set the password in MySQL.
     await setPassword(password);
 }
 

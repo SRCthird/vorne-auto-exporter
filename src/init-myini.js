@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// Define the path to the my.ini file in the project directory
 const currentModulePath = __dirname;
 const root = path.join(currentModulePath, '..');
 
@@ -16,7 +15,6 @@ datadir=${datadir}
 port = 3306
 `;
 
-// Write the content to the my.ini file
 fs.writeFile(myini, myIniConfig, (err) => {
   if (err) {
     console.error(`An error occurred while writing the my.ini file: ${err}`);
