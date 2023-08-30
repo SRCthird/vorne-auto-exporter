@@ -75,6 +75,14 @@ yargs(hideBin(process.argv))
             runCommand('node src/init-table.js');
         }
     })
+    .command({
+        command: 'login',
+        describe: 'Log into the MySQL database',
+        handler: () => {
+            console.log('Logging in...');
+            runCommand('cd mysql/bin && mysql -u root -p');
+        }
+    })
     .version('1.0.0')
     .demandCommand(1, 'You need at least one command before moving on')
     .strict()
