@@ -1,4 +1,4 @@
-# Vorne XL Data Collector (Executable)
+# Vorne XL Data Collector and Formatter
 
 This program is designed to fetch data from a Vorne XL database, process the information, and then store it in a MySQL database. It provides both automated and manual methods to retrieve and update the data.
 
@@ -11,11 +11,11 @@ This program is designed to fetch data from a Vorne XL database, process the inf
 
 1. Clone the repository to a local machine:
 ```bash
-git clone https://github.com/SRCthird/vorne-database.git
+git clone https://github.com/SRCthird/vorne-auto-exporter.git
 ```
 2. Navigate to the project directory:
 ```bash
-cd vorne-database
+cd vorne-auto-exporter
 ```
 
 ## Database Setup
