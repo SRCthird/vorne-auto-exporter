@@ -4,10 +4,8 @@ This program is designed to fetch data from a Vorne XL database, process the inf
 
 ## Prerequisites
 
-* Node.js and NPM (optional)
-* git (optional)
+* Node.js and NPM v18.5.0 (optional)
 * [MySQL server v 8.0.28](https://downloads.mysql.com/archives/community/)
-* A server/computer with sleep disabled
 
 ## Installation
 
@@ -39,7 +37,7 @@ vorne-query init
         <ipaddress>
             Name: <name of database> # Will be the name of the database in MySQL
             Tables: 
-                Registers: # These tables are just for reference and wont be pulled
+                Registers: # These tables are just for reference and won't be pulled
                     <table1>
                         columns:
                             <column1>: <datatype>
@@ -90,9 +88,15 @@ vorne-query refresh
 
 Before starting, ensure you update the [schema.yaml](/README.md#L37) and [initialize](/README.md#L29) the program.
 
-**You will beed the following:**
+**You will need the following:**
 * Vorne XL database credentials and endpoint
 * MySQL database credentials and settings
+
+## Learn more
+
+* [Vorne.com](https://www.vorne.com/products/xl/)
+* [MySQL.com](https://dev.mysql.com/doc/)
+* [Nodejs.com](https://nodejs.org/docs/latest-v18.x/api/)
 
 ## License 
 
