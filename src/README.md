@@ -148,24 +148,6 @@ This script facilitates the creation of tables in a MySQL database using the YAM
     a. **Advanced**: Configure your database connection parameters (host, user, password).
 4. Run the initialization script using the executable command.
 
-#### Example:
-
-```yaml
-Database:
-  192.168.1.10:
-    Name: My_Database
-    Tables:
-      Streams:
-        ExampleStream:
-          columns:
-            sequence_number: PKint
-            event_type: mapping.event_type
-            event_id: mapping.error_code
-            event_time: formatTime
-            event_data: str
-            global_sequence_number: int
-```
-
 ### Notes:
 
 - The password for the MySQL connection is retrieved using the `getPassword` function from the [`../modules/getPassword.js`](../modules/getPassword.js) module. Ensure you have this module set up and returning the correct password for your database.
@@ -193,6 +175,24 @@ Database:
 - `TABLE_NAME`: The name of the table to be created and pulled. Must match the target tables name.
 - `COLUMN_NAME`: Name of the column in the table. Must match the target columns name.
 - `COLUMN_TYPE`: Type of the column. See [data types](../README.md#data-types) for more information.
+
+#### Example:
+
+```yaml
+Database:
+  192.168.1.10:
+    Name: My_Database
+    Tables:
+      Streams:
+        ExampleStream:
+          columns:
+            sequence_number: PKint
+            event_type: mapping.event_type
+            event_id: mapping.error_code
+            event_time: formatTime
+            event_data: str
+            global_sequence_number: int
+```
 
 ## Troubleshooting
 
