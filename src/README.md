@@ -23,14 +23,14 @@ A simple script to set the password of the `root` MySQL user on localhost and sa
 - `mysql2` npm package
 - `readline-sync` npm package
 
-### Features
+### Features:
 
 - Connects to a MySQL server running on localhost using the `root` user.
 - Prompts the user to input a new password for the `root` user.
 - Saves the new password to a local JSON file named `password.json`.
 - Changes the password for the `root` user to the newly provided one.
 
-### Usage
+### Usage:
 
 1. Make sure you have Node.js and npm installed or the correct version of the exe file.
 2. Install required packages using npm.
@@ -193,49 +193,4 @@ Database:
             event_data: str
             global_sequence_number: int
 ```
-
-## Troubleshooting
-
-If you encounter issues while using the script, here are some common troubleshooting steps you can follow:
-
-1. **Connection Issues**:
-    - **Error**: Cannot connect to the MySQL server.
-        - **Solution 1**: Ensure your MySQL server is running and listening on the specified host and port. Check your firewall settings to ensure it's not blocking the connection.
-        - **Solution 2**: Check task manager. If mysql.exe is running but you are unable to connect due to an error that isn't 'Access Denied', end the task in task manager and run the server again.
-
-    - **Error**: Authentication failure.
-        - **Solution**: Double-check the username and password. Ensure the [`getPassword.js`](../modules/getPassword.js) module is returning the correct password. The root user should have the necessary permissions to create databases.
-
-2. **Schema File Issues**:
-    - **Error**: Cannot read the `schema.yaml` file.
-        - **Solution**: Ensure the file is present in the correct directory and the Node.js process has the necessary permissions to read the file.
-
-    - **Error**: Invalid YAML structure.
-        - **Solution 1**: Validate your `schema.yaml` file's format. You can use online YAML validators to help spot any syntax errors.
-        - **Solution 2**: Ensure the file architecture is correctly set. See #5 of [database setup](../README.md#database-setup) for more details.
-
-3. **Database Creation Issues**:
-    - **Error**: Cannot create a specific database.
-        - **Solution**: Ensure the database name doesn't contain any special characters or spaces that might be causing the issue. Also, make sure the user has the correct permissions to create databases.
-
-4. **Dependency Issues**:
-    - **Error**: Missing module errors.
-        - **Solution**: Run `npm install` or `yarn install` to ensure all dependencies are correctly installed.
-
-    - **Error**: Version conflict errors.
-        - **Solution**: Check `package.json` for the versions of the modules being used and consider updating or rolling back to a stable version if needed.
-
-5. **Authentication Issues**:
-    - **Error**: MySQL is inaccessible on initialization.
-        - **Solution 1**: Ensure that the initial configuration of your MySQL server allows root connections without a password. You can check this by looking at [index.js](../index.js#L72). It should initialize your MySQL server as `--initialize-insecure`. If this was changed you may have to repackage index.js into an executable again.
-        - **Solution 2**: Recreating the database. If you are unable to initialize your database and have not added any data yet, delete the [data](../mysql/data/) folder in mysql and reinitialize the program. 
-
-    - **Error**: Access denied to the MySQL database after initialization.
-        - **Solution**: Ensure that any password changes after initialization are recorded in password.json.
-
-6. **General Troubleshooting Tips**:
-    - **Environment**: Ensure your Node.js environment is correctly set up and all global dependencies (like MySQL) are properly installed.
-    - **Permissions**: Ensure the script has necessary permissions. Sometimes the issues might be because the script cannot access certain directories or files.
-
-If you still face issues, consider reaching out to community forums or checking the official documentation of the libraries used in the script for more insights.
 
